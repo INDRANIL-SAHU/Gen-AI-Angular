@@ -1,0 +1,52 @@
+<div [ngClass]="'card card-' + statusColor">
+  <!-- Card Header with Status Badge -->
+  <div class="card-header">
+    <div class="tracking-info">
+      <h3 class="tracking-no">{{ demand.trackingNo }}</h3>
+      <p class="created-date">Created: {{ displayCreatedDate }}</p>
+    </div>
+    <div [ngClass]="'status-badge badge-' + statusColor">
+      {{ completionStatus }}
+    </div>
+  </div>
+
+  <!-- Card Body -->
+  <div class="card-body">
+    <!-- Skills Tags -->
+    <div class="skills-section">
+      <label class="section-label">Skills:</label>
+      <div class="skills-container">
+        <span *ngFor="let skill of demand.skills" class="skill-tag">
+          {{ skill }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Statuses Section -->
+    <div class="statuses-grid">
+      <div class="status-item">
+        <span class="status-label">OT Status:</span>
+        <span
+          [ngClass]="'status-value status-ot-' + demand.otStatus.toLowerCase().replace(' ', '-')"
+        >
+          {{ demand.otStatus }}
+        </span>
+      </div>
+
+      <div class="status-item">
+        <span class="status-label">SR Status:</span>
+        <span
+          [ngClass]="'status-value status-sr-' + demand.srStatus.toLowerCase().replace(' ', '-')"
+        >
+          {{ demand.srStatus }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Billing Date -->
+    <div class="billing-section">
+      <span class="section-label">Billing Start:</span>
+      <span class="billing-date">{{ displayBillingDate }}</span>
+    </div>
+  </div>
+</div>

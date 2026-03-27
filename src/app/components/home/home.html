@@ -1,0 +1,58 @@
+<div class="home-container">
+  <!-- Header Section -->
+  <header class="header">
+    <div class="header-content">
+      <h1 class="header-title">iDemand Simulator POC</h1>
+      <p class="header-subtitle">Manage and track demand statuses in real-time</p>
+    </div>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="main-content">
+    <!-- Status Counters -->
+    <section class="counters-section">
+      <h2 class="section-title">Dashboard Overview</h2>
+      <div class="counters-grid">
+        <app-status-counter
+          [count]="demandService.completedCount()"
+          label="Completed"
+          color="green"
+        ></app-status-counter>
+        <app-status-counter
+          [count]="demandService.inProgressCount()"
+          label="In Progress"
+          color="amber"
+        ></app-status-counter>
+        <app-status-counter
+          [count]="demandService.pendingCount()"
+          label="Pending"
+          color="red"
+        ></app-status-counter>
+      </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+      <h2 class="section-title">Search & Filter</h2>
+      <app-filters></app-filters>
+    </section>
+
+    <!-- Demands Grid Section -->
+    <section class="demands-section">
+      <h2 class="section-title">Demands</h2>
+
+      <!-- Empty State -->
+      <div *ngIf="demandService.filteredDemands().length === 0" class="empty-state">
+        <p>No demands found matching your filters.</p>
+      </div>
+
+      <!-- Demands Grid -->
+      <div *ngIf="demandService.filteredDemands().length > 0" class="demands-grid">
+        <app-demand-card
+          *ngFor="let demand of demandService.filteredDemands()"
+          [demand]="demand"
+        ></app-demand-card>
+      </div>
+    </section>
+  </main>
+</div>

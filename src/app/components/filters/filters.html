@@ -1,0 +1,45 @@
+<div class="filters-container">
+  <!-- Search Bar -->
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search by Tracking No or Skills..."
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchChange($event)"
+      class="search-input"
+    />
+  </div>
+
+  <!-- Filters Row -->
+  <div class="filters-row">
+    <!-- OT Status Filter -->
+    <div class="filter-group">
+      <label for="ot-status">OT Status:</label>
+      <select
+        id="ot-status"
+        [(ngModel)]="selectedOTStatus"
+        (ngModelChange)="onOTStatusChange($event)"
+        class="filter-select"
+      >
+        <option *ngFor="let status of otStatusOptions" [value]="status">
+          {{ status }}
+        </option>
+      </select>
+    </div>
+
+    <!-- SR Status Filter -->
+    <div class="filter-group">
+      <label for="sr-status">SR Status:</label>
+      <select
+        id="sr-status"
+        [(ngModel)]="selectedSRStatus"
+        (ngModelChange)="onSRStatusChange($event)"
+        class="filter-select"
+      >
+        <option *ngFor="let status of srStatusOptions" [value]="status">
+          {{ status }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
